@@ -6,14 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/chat-icons.css">
-
-	<style>
-		textarea {
-			width: 50%;
-			resize: none;
-		}
-	</style>
 </head>
 
 <body>
@@ -52,7 +44,6 @@
 				const chatWindow = document.querySelector('.chat-window');
 				const toggleButton = document.querySelector('.chat-window-toggle');
 				const video = chatWindow.querySelector('.chat-header-avatar video');
-				console.log(video);
 				toggleButton.addEventListener('click', function () {
 					const isVisible = chatWindow.style.display !== 'none';
 					if (isVisible && video) {
@@ -63,7 +54,6 @@
 				});
 
 				const textarea = await waitForTextarea('.chat-inputs textarea');
-				console.log('Textarea found:', textarea);
 				textarea.addEventListener('input', resize);
 				function resize(_e) {
 					var event = _e || event || window.event;
