@@ -921,9 +921,9 @@ body[data-theme=dark] .hljs-deletion {
 	font-size: 1rem;
 	display: block;
 	width: 100%;
-	border: var(--chat--input--border, 0);
 	/* border-radius: var(--chat--input--border-radius, 0); */
 	border: none;
+	border-top: var(--chat--input--border, 0);
 	padding: 14px var(--chat--messages-list--padding);
 	padding-right: calc(var(--chat--textarea--height) + var(--chat--messages-list--padding) + 0.5rem);
 	min-height: 80px;
@@ -941,7 +941,7 @@ body[data-theme=dark] .hljs-deletion {
 
 .chat-inputs textarea[data-v-2a7fb1c3]:focus,
 .chat-inputs textarea[data-v-2a7fb1c3]:hover {
-	border-color: var(--chat--header--background, var(--chat--color-dark))
+	border-color: rgba(0, 0, 0, .5);
 }
 
 .chat-inputs-controls[data-v-2a7fb1c3] {
@@ -990,8 +990,9 @@ body[data-theme=dark] .hljs-deletion {
 }
 
 .chat-input-send-button[disabled][data-v-2a7fb1c3] {
-	cursor: no-drop;
-	color: var(--chat--color-disabled)
+	cursor: default;
+	color: var(--chat--color-disabled);
+	opacity: .4;
 }
 
 .chat-files[data-v-2a7fb1c3] {
@@ -1056,10 +1057,6 @@ body[data-theme=dark] .hljs-deletion {
 }
 
 .chat-layout .chat-footer {
-	/* padding: var(--chat--messages-list--padding); */
-	padding-top: 0;
-	box-shadow: 0 -12px 20px 5px #fff;
-	border-top: var(--chat--input--border, 0);
 	position: relative;
 	z-index: 1;
 	background: var(--chat--footer--background, var(--chat--color-light));

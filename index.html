@@ -49,10 +49,20 @@
 			});
 
 			try {
+				const chatWindow = document.querySelector('.chat-window');
+				const toggleButton = document.querySelector('.chat-window-toggle');
+				const video = chatWindow.querySelector('.chat-header-avatar video');
+				console.log(video);
+				toggleButton.addEventListener('click', function () {
+					const isVisible = chatWindow.style.display !== 'none';
+					if (isVisible && video) {
+						if (video.paused) { video.play(); }
+						else { video.pause(); }
+					}
+				});
 				const textarea = await waitForTextarea('.chat-inputs textarea');
 				console.log('Textarea found:', textarea);
 				textarea.addEventListener('input', resize);
-
 				function resize(_e) {
 					var event = _e || event || window.event;
 					var getElement = event.target || event.srcElement; // var el = this;
