@@ -12776,23 +12776,21 @@ const T7 = /* @__PURE__ */ Ys(S7), D7 = /* @__PURE__ */ Ve({
     return vt(async () => {
       await a(), !o.showWelcomeScreen && !s.value && await i();
     }), (u, f) => (Z(), be(fd, { class: "chat-wrapper" }, {
-      header: st(() => [
-        he("div", q7, [
-          he("h1", null, vn(se(e)("title")), 1),
-          c.value ? (Z(), ce("button", {
-            key: 0,
-            class: "chat-close-button",
-            title: se(e)("closeButtonTooltip"),
-            onClick: l
-          }, [
-            ge(se(Wh), {
-              height: "18",
-              width: "18"
-            })
-          ], 8, F7)) : Fe("", !0)
-        ]),
-        se(e)("subtitle") ? (Z(), ce("p", B7, vn(se(e)("subtitle")), 1)) : Fe("", !0)
-      ]),
+		header: st(() => [
+			  he("div", { class: "chat-header-avatar" }, [
+				he("video", {
+				  autoplay: "",
+				  muted: "",
+				  loop: "",
+				  playsinline: "",
+				  src: "video/avatar.webm"
+				})
+			  ]),
+			  he("div", { class: "chat-heading" }, [
+				he("h1", null, vn(se(e)("title")), 1),
+				se(e)("subtitle") ? he("p", null, vn(se(e)("subtitle")), 1) : null
+			  ])
+		  ]),		  
       footer: st(() => [
         se(s) ? (Z(), be(id, { key: 0 })) : (Z(), be(op, { key: 1 }))
       ]),
