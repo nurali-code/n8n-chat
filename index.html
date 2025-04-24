@@ -56,10 +56,12 @@
 				toggleButton.addEventListener('click', function () {
 					const isVisible = chatWindow.style.display !== 'none';
 					if (isVisible && video) {
+						toggleButton.classList.toggle('msg')
 						if (video.paused) { video.play(); }
 						else { video.pause(); }
-					}
+					} else { toggleButton.classList.toggle('msg') }
 				});
+
 				const textarea = await waitForTextarea('.chat-inputs textarea');
 				console.log('Textarea found:', textarea);
 				textarea.addEventListener('input', resize);
