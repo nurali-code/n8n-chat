@@ -13,10 +13,26 @@
     <script type="module">
         import { createChat } from './js/chat.bundle.es.js';
 
-        createChat({
-            webhookUrl: 'https://foliumlab.tech/webhook/5b490b69-e086-4e8a-99ab-812b61924fce/chat'
+        document.addEventListener('DOMContentLoaded', function () {
+            createChat({
+                webhookUrl: 'https://foliumlab.tech/webhook/5b490b69-e086-4e8a-99ab-812b61924fce/chat'
+            });
+            const chatWindow = document.querySelector('.chat-window');
+            const toggleButton = document.querySelector('.chat-window-toggle');
+            const video = chatWindow.querySelector('.chat-header-avatar video');
+            console.log(video);
+            toggleButton.addEventListener('click', function () {
+                const isVisible = chatWindow.style.display !== 'none';
+                if (isVisible && video) {
+                    if (video.paused) { video.play(); }
+                    else { video.pause(); }
+                }
+            });
         });
     </script>
+
+
+
 </body>
 
 </html>

@@ -25,3 +25,19 @@
 	height: 100%;
 	object-fit: cover;
 }
+.chat-window-wrapper .chat-window-toggle::before {
+	content: 'С чего начнем?';
+	position: absolute;
+	top: -20%;
+	right: 100%;
+	font-family: inherit;
+	font-size: 14px;
+	white-space: nowrap;
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 5px 10px;
+	border-radius: 10px;
+	border-bottom-right-radius: 0;
+	
+
+}
