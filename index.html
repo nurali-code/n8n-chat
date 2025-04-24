@@ -2,34 +2,69 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/chat-icons.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/chat-icons.css">
+
+	<style>
+		textarea {
+			width: 50%;
+			resize: none;
+		}
+	</style>
 </head>
 
 <body>
-    <script type="module">
-        import { createChat } from './js/chat.bundle.es.js';
+	<script type="module">
+		import { createChat } from './js/chat.bundle.es.js';
 
-        document.addEventListener('DOMContentLoaded', function () {
-            createChat({
-                webhookUrl: 'https://foliumlab.tech/webhook/5b490b69-e086-4e8a-99ab-812b61924fce/chat'
-            });
-            const chatWindow = document.querySelector('.chat-window');
-            const toggleButton = document.querySelector('.chat-window-toggle');
-            const video = chatWindow.querySelector('.chat-header-avatar video');
-            console.log(video);
-            toggleButton.addEventListener('click', function () {
-                const isVisible = chatWindow.style.display !== 'none';
-                if (isVisible && video) {
-                    if (video.paused) { video.play(); }
-                    else { video.pause(); }
-                }
-            });
-        });
-    </script>
+		// Ждём появления textarea
+		function waitForTextarea(selector, timeout = 15000) {
+			return new Promise((resolve, reject) => {
+				const el = document.querySelector(selector);
+				if (el) return resolve(el);
+
+				const observer = new MutationObserver(() => {
+					const el = document.querySelector(selector);
+					if (el) { observer.disconnect(); resolve(el); }
+				});
+
+				observer.observe(document.body, {
+					childList: true, subtree: true
+				});
+
+				setTimeout(() => {
+					observer.disconnect();
+					reject(new Error('Textarea not found within timeout'));
+				}, timeout);
+			});
+		}
+
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			await createChat({
+				webhookUrl: 'https://foliumlab.tech/webhook/5b490b69-e086-4e8a-99ab-812b61924fce/chat'
+			});
+
+			try {
+				const textarea = await waitForTextarea('.chat-inputs textarea');
+				console.log('Textarea found:', textarea);
+				textarea.addEventListener('input', resize);
+
+				function resize(_e) {
+					var event = _e || event || window.event;
+					var getElement = event.target || event.srcElement; // var el = this;
+					/* для сброса фантомной высоты от бордера :) и если направление на уменьшение строк  */
+					getElement.style.height = "auto";
+					/* вычисление и присвоение высоты */
+					getElement.style.height = Math.max(getElement.scrollHeight, getElement.offsetHeight) + "px"
+				}
+
+			} catch (error) { console.error(error.message); }
+		});
+	</script>
 
 
 
